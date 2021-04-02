@@ -1,0 +1,5 @@
+{
+  "token": "token de tu bot",
+  "developers": ["ID 1", "ID 2", "ETC"],
+  "prefix": "prefix del bot"
+}
