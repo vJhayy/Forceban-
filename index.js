@@ -3,7 +3,7 @@ const Discord = require('discord.js'); //Declaramos discord
 const client = new Discord.Client(); //Usamos el constructor del cliente
 //Client
 client.config = require('./config.json'); //Config
-client.db = require('megabd'); //Db del bot
+client.db = require('megadb'); //Db del bot
 client.guild = client.guilds.resolve(client.config.server_pruebas); //Server de donde se banearan los users de la forceban
 
 //
