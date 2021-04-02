@@ -4,12 +4,15 @@ const client = new Discord.Client(); //Usamos el constructor del cliente
 //Client
 client.config = require('./config.json'); //Config
 client.db = require('megabd'); //Db del bot
+//
+let prefix = client.config.prefix;
 //Eventos 
 client.on('ready', async() =>{
 console.log(client.user.tag+' forceban lista!');
 });
 client.on('message' , async message =>{
 
-  
+    let args = message.content.slice(prefix.length).trim().split(/ +/g);
+
   
 });
