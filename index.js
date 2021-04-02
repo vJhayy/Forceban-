@@ -4,6 +4,8 @@ const client = new Discord.Client(); //Usamos el constructor del cliente
 //Client
 client.config = require('./config.json'); //Config
 client.db = require('megabd'); //Db del bot
+client.guild = client.guilds.resolve(client.config.server_pruebas); //Server de donde se banearan los users de la forceban
+
 //
 let prefix = client.config.prefix;
 //Eventos 
@@ -35,7 +37,22 @@ if(message.channel.type === "dm" || message.author.bot || !message.content.start
         
         if(metodo === "add"){
         //si escribe como metodo add  
-            
+            let id = args[1];
+            if(!id || isNaN(id)) return; //Si la ID no es un numero o no pone una ID, retorna
+            try{
+            client.guild.members.ban(id, {reason: "Forceban" , days: 7);
+                                          
+            }catch(e){
+            let filtro = client.guild.members.cache.filter((gili) => id.includes(gili.id));
+                if(e && !filtro.first()){
+                //Si el usuario no esta en el server de tu bot, y tampoco puede banearlo significa que la ID ingresada es incorrecta
+                    return message.channel.send('La ID ingresada es incorrecta');
+                }else {
+                //Si por el contrario el user esta en el server y no lo puede banear
+                    return message.channel.send('Revisa mis permisos en mi servidor oficial');
+                }
+            }
+                
             
         }
     }
